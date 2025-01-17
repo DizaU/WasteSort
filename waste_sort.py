@@ -1,4 +1,9 @@
+from ultralytics import YOLO
 import streamlit as st
+
+from PIL import Image
+
+st.set_page_config(layout="wide")
 
 tab1,tab2,tab3=st.tabs(["Home","Scan & Sort","About me"])
 
@@ -22,8 +27,7 @@ with tab2:
                 
     with col2:
         st.header("Sort")
-        #st.image("https://cdn-icons-png.flaticon.com/512/10004/10004491.png", width=200)
-        #st.header("Sort")
+        
     with col3:
         st.image("https://cdn-icons-png.flaticon.com/512/10004/10004491.png", width=200)
 
