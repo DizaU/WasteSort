@@ -1,5 +1,16 @@
 
 import streamlit as st
+from ultralytics import YOLO
+from PIL import Image
+
+# Load the model
+@st.cache_resource
+def models():
+    mod = YOLO('best.pt')
+    return mod
+
+
+
 
 st.set_page_config(layout="wide")
 
@@ -19,8 +30,20 @@ with tab2:
     col1,col2,col3=st.columns(3)
     with col1:
         st.header("Scan")
-        file= st.file_uploader("Upload an image of your waste here")
-        st.button("Submit")
+        file= st.file_uploader("Upload an image of your waste here",type=['jpg', 'png', 'jpeg'])
+        analyse= st.button("Submit")
+        if analyse:
+            if file is not None:
+                img = Image.open(file)
+                st.markdown('Image Visualization')
+                st.image(img)
+                model = models()
+                res = model.predict(img)
+                label = res[0].probs.top5
+                conf = res[0].probs.top5conf
+                conf = conf.tolist()
+                st.write('Detected: ' + str(res[0].names[label[0]].title()))       
+                st.write('Confidence level: ' + str(conf[0]*100))
 
                 
     with col2:
