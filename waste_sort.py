@@ -14,7 +14,7 @@ def models():
 
 st.set_page_config(layout="wide")
 
-tab1,tab2,tab3=st.tabs(["Home","Scan & Sort","About me"])
+tab1,tab2,tab3=st.tabs(["Home","Scan & Sor","About me"])
 
 with tab1:
     st.title("Waste : Scan & Sort")
