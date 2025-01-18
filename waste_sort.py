@@ -44,6 +44,11 @@ with tab2:
                 conf = conf.tolist()
                 st.write('Detected: ' + str(res[0].names[label[0]].title()))       
                 st.write('Confidence level: ' + str(conf[0]*100))
+                if str(res[0].names[label[0]].title())== "Biodegradable":
+                    st.write("Biodegradable should be thrown in green dustbins.")
+                else:
+                    st.write("Non-biodegradable should be thrown in blue dustbins.")
+                    
 
                 
     with col2:
